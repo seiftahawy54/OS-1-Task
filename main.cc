@@ -18,17 +18,20 @@ void changeFilesPermissions()
 	// List files & folders
 	cout<< "\n\n";
 	system("ls -s");
-	
-	// Get File/Directory name
-	cout << "\nEnter your desired File/Directory name\n";
-	string name;
-	cin>>name;
-	
+
 	// Check if this is a valid name
-	if ([ -f "mm.txt" ] && [ -d "mm.txt" ]){
-		cout<< "hiii";
+	string name;
+	string command;
+	int result;
+	do {
+		cout<< "Please enter a valid file name !"<<endl;
+		cin>>name;
+		
+		command = "[ -f \"" + name + "\" ]";
+		// system accepts const strings, so this function returns a const string version of "that"
+		result = system(command.c_str());
 	}
-	
+	while (result != 0);	// '0' tells that it returned successfully
 }
 // End premissions changer.
 
