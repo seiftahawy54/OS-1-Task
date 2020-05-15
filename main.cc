@@ -5,7 +5,9 @@ using namespace std;
 
 // Handle system function prototype.
 void handleSystem(int);
-
+string _getPermissionsFileName ();
+int _promptUser(string);
+string _buildPermissionArguments (int,int,int);
 
 // Start files and folders lister.
 void listFilesAndFolders()
@@ -17,11 +19,63 @@ void changeFilesPermissions()
 {
 	// List files & folders
 	cout<< "\n\n";
-	system("ls -s");
+	system("ls -l");
 
 	// Check if this is a valid name
-	string name;
+	string name = _getPermissionsFileName();
+
+	// get permission values
+	int read, write, excute;
+
+	read = _promptUser("read");
+	write = _promptUser("write");
+	excute = _promptUser("excute");
+
+	// Build and exute command
+	string command = "chmod ";
+	command +=_buildPermissionArguments(read, write, excute);
+	command += " " + name;
+
+	// system accepts const strings, so this function returns a const string version of "that"
+	system(command.c_str());
+	cout<< endl << "Permissions changed for " + name + " successfully !\n\n";
+}
+int _promptUser(string prompt){
+	string response;
+	do{
+		cout<< "You want to " + prompt + " this file ? [Y/N]\t";
+		cin>> response;
+	} while(response != "Y" && response != "y" && response != "N" && response != "n");
+	
+	if (response == "Y" || response == "y"){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+string _buildPermissionArguments (int read, int write, int excute){
+	string command = "";
+	
+	if(read == 0) command += '-';
+	else command += '+';
+	command += "r";
+
+	if(write == 0) command += '-';
+	else command += '+';
+	command += "w";
+
+	if(excute == 0) command += '-';
+	else command += '+';
+	command += "x";
+
+	return command;
+}
+
+string _getPermissionsFileName (){
 	string command;
+	string name;
+
 	int result;
 	do {
 		cout<< "Please enter a valid file name !"<<endl;
@@ -32,7 +86,10 @@ void changeFilesPermissions()
 		result = system(command.c_str());
 	}
 	while (result != 0);	// '0' tells that it returned successfully
+
+	return name;
 }
+
 // End premissions changer.
 
 // Start files manager
