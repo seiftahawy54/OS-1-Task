@@ -149,6 +149,21 @@ void initFileManagement()
 
 void symbolicLinkFiles()
 {
+    // Files variabls.
+    string firstFile, secondFile, command;
+    // Prompting user to enter file to link
+    cout << "Please enter first file\n" << endl;
+    cin >> firstFile;
+    // Prompting user to enter file to destination
+    cout << "Please enter second file\n" << endl;
+    cin >> secondFile;
+    // Concatenate command.
+    command += "ln -s " + firstFile + " " + secondFile;
+    // covert the string command into array of characters.
+    const char * cmd = command.c_str();
+    // Make system call.
+    system(cmd);
+    cout << "\nSymblic link folder is created!\n" << endl;
 }
 
 // End symblic link files
