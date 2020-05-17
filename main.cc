@@ -4,6 +4,7 @@
 using namespace std;
 
 // Handle system function prototype.
+void systemInit();
 void handleSystem(int);
 string _getPermissionsFileName ();
 int _promptUser(string);
@@ -102,7 +103,7 @@ void initFileManagement()
 	do
 	{
 		cout << "please, enter your operation : \n" << endl;
-		cout << "1_to make directory.\n" << endl;
+		cout << "1_to make directory.\n";
 		cout << "2_to remove directory.\n";
 		cout << "3_to make file.\n";
 		cout << "4_to remove file.\n";
@@ -112,7 +113,7 @@ void initFileManagement()
 	{
 	case 1 :
 		cout << "enter your directory name : ";
-		scanf("%s",&s);
+		cin >> s;
 		strcpy(command,"mkdir");
 		strcat(command," ");
 		strcat(command,s);
@@ -120,7 +121,7 @@ void initFileManagement()
 		break;
 	case 2 :
 		cout << "enter your directory name you want remove : ";
-		scanf("%s",&s);
+		cin >> s;
 		strcpy(command,"rmdir");
 		strcat(command," ");
 		strcat(command,s);
@@ -128,7 +129,7 @@ void initFileManagement()
 		break;
 	case 3 :
 		cout << "enter your file name with extention : ";
-		scanf("%s",&s);
+		cin >> s;
 		strcpy(command,"touch");
 		strcat(command," ");
 		strcat(command,s);
@@ -136,7 +137,7 @@ void initFileManagement()
 		break;
 	case 4 :
 		cout << "enter your file name you want remove : ";
-		scanf("%s",&s);
+		cin >> s;
 		strcpy(command,"rm");
 		strcat(command," ");
 		strcat(command,s);
@@ -164,14 +165,13 @@ void symbolicLinkFiles()
     const char * cmd = command.c_str();
     // Make system call.
     system(cmd);
-    cout << "\nSymblic link folder is created!\n" << endl;
 }
 
 // End symblic link files
 // Start Files handler function
 void handleSystem(int num)
 {
-    while (num != 5)
+    while (true)
 	{
 		// handle system function
 		if (num == 1)
@@ -193,12 +193,15 @@ void handleSystem(int num)
 		else if (num == 5)
 		{
 			cout << "Thanks for using our program <3" << endl;
-			exit(0);
+			break;
 		}
 		else
 		{
 			cout << "\nPlease enter valid choice!\n" << endl;
+			systemInit();
 		}
+
+		systemInit();
 	}
 }
 // End Files handler function
