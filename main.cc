@@ -100,17 +100,17 @@ void initFileManagement()
 	int choose;
 	do
 	{
-	printf("please, enter your operation : \n");
-	printf("1_to make directory.\n");
-	printf("2_to remove directory.\n");
-	printf("3_to make file.\n");
-	printf("4_to remove file.\n");
-	printf("5_to exist.\n");
-	scanf("%d",&choose);
+		cout << "please, enter your operation : \n" << endl;
+		cout << "1_to make directory.\n" << endl;
+		cout << "2_to remove directory.\n";
+		cout << "3_to make file.\n";
+		cout << "4_to remove file.\n";
+		cout << "5_to exist.\n";
+		scanf("%d",&choose);
 	switch(choose)
 	{
 	case 1 :
-		printf("enter your directory name : ");
+		cout << "enter your directory name : ";
 		scanf("%s",&s);
 		strcpy(command,"mkdir");
 		strcat(command," ");
@@ -118,7 +118,7 @@ void initFileManagement()
 		system(command);
 		break;
 	case 2 :
-		printf("enter your directory name you want remove : ");
+		cout << "enter your directory name you want remove : ";
 		scanf("%s",&s);
 		strcpy(command,"rmdir");
 		strcat(command," ");
@@ -126,7 +126,7 @@ void initFileManagement()
 		system(command);
 		break;
 	case 3 :
-		printf("enter your file name with extention : ");
+		cout << "enter your file name with extention : ";
 		scanf("%s",&s);
 		strcpy(command,"touch");
 		strcat(command," ");
@@ -134,7 +134,7 @@ void initFileManagement()
 		system(command);
 		break;
 	case 4 :
-		printf("enter your file name you want remove : ");
+		cout << "enter your file name you want remove : ";
 		scanf("%s",&s);
 		strcpy(command,"rm");
 		strcat(command," ");
@@ -170,32 +170,35 @@ void symbolicLinkFiles()
 // Start Files handler function
 void handleSystem(int num)
 {
-    // handle system function
-    if (num == 1)
-    {
-        listFilesAndFolders();
-    }
-    else if (num == 2)
-    {
-        changeFilesPermissions();
-    }
-    else if (num == 3)
-    {
-        initFileManagement();
-    }
-    else if (num == 4)
-    {
-        symbolicLinkFiles();
-    }
-    else if (num == 5)
-    {
-        cout << "Thanks for using our program <3" << endl;
-        exit(0);
-    }
-    else
-    {
-        cout << "\nPlease enter valid choice!\n" << endl;
-    }
+    while (num != 5)
+	{
+		// handle system function
+		if (num == 1)
+		{
+			listFilesAndFolders();
+		}
+		else if (num == 2)
+		{
+			changeFilesPermissions();
+		}
+		else if (num == 3)
+		{
+			initFileManagement();
+		}
+		else if (num == 4)
+		{
+			symbolicLinkFiles();
+		}
+		else if (num == 5)
+		{
+			cout << "Thanks for using our program <3" << endl;
+			exit(0);
+		}
+		else
+		{
+			cout << "\nPlease enter valid choice!\n" << endl;
+		}
+	}
 }
 // End Files handler function
 
