@@ -164,7 +164,10 @@ void symbolicLinkFiles()
     // covert the string command into array of characters.
     const char * cmd = command.c_str();
     // Make system call.
-    system(cmd);
+    if (system(cmd) != -1)
+		cout << "Link created successfully!" << endl;
+	else
+		cout << "Error!" << endl;
 }
 
 // End symblic link files
@@ -193,7 +196,7 @@ void handleSystem(int num)
 		else if (num == 5)
 		{
 			cout << "Thanks for using our program <3" << endl;
-			break;
+			exit(0);
 		}
 		else
 		{
