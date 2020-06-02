@@ -1,7 +1,0 @@
-Tasks for should be deliverd in Friday 15-5-2020:
-
-Tawfiq -> Task Number A
-Shady  -> Task Number B
-Araby  -> Task Number C
-Hamdy  -> Task Number D
-Seif   -> Writing documentation
